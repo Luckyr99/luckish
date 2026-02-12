@@ -1,41 +1,62 @@
 /* ============================================
-   TANAY MISHRA - CUSTOM OVERRIDES
-   "The Automation King of Bali"
+   LUCKISH RANGRA - CUSTOM OVERRIDES
+   "The Marketing Maharaja of Chandigarh"
    ============================================ */
 
-/* Tanay gets a special tropical-chaos theme */
+/* Luckish gets a special neon-chaos theme */
 .tanay-page {
   --accent-1: #ff00ff;
   --accent-2: #00ffff;
   --accent-3: #ffff00;
 }
 
-/* Special header for Tanay */
+/* Special header for Luckish */
 .tanay-header {
   text-align: center;
-  padding: 30px 15px 15px;
+  padding: 40px 15px 20px;
   position: relative;
+}
+
+.tanay-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 100%;
+  background: radial-gradient(ellipse at center top,
+    rgba(255, 0, 255, 0.08) 0%,
+    rgba(0, 240, 255, 0.04) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
 }
 
 .tanay-header h1 {
   font-family: 'Bungee Shade', cursive;
   font-size: clamp(28px, 6vw, 56px);
   line-height: 1.2;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
+  letter-spacing: 2px;
 }
 
 .tanay-header .subtitle {
   font-family: 'Rubik Glitch', system-ui;
   font-size: clamp(14px, 3vw, 22px);
   color: var(--neon-yellow);
+  text-shadow: 0 0 15px rgba(255, 247, 0, 0.3);
 }
 
-/* Profile pic - generates a fun avatar since we don't have a real photo */
+/* Profile pic - animated gradient avatar */
 .tanay-avatar {
   width: 200px;
   height: 200px;
   margin: 0 auto;
-  background: linear-gradient(135deg, #ff00ff, #00ffff, #ffff00);
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.15), transparent 50%),
+    conic-gradient(from 0deg, #ff00ff, #00ffff, #ffff00, #ff00ff);
+  background-size: 100% 100%, 100% 100%;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -45,9 +66,24 @@
   box-shadow:
     0 0 20px var(--neon-pink),
     0 0 40px var(--neon-blue),
-    0 0 60px var(--neon-pink);
-  animation: avatar-pulse 2s ease-in-out infinite alternate;
+    0 0 60px var(--neon-pink),
+    inset 0 0 30px rgba(0, 0, 0, 0.3);
+  animation: avatar-pulse 2s ease-in-out infinite alternate, avatar-rotate 8s linear infinite;
   position: relative;
+}
+
+.tanay-avatar::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 2px dashed rgba(255, 247, 0, 0.4);
+  animation: spin360-reverse 6s linear infinite;
+}
+
+@keyframes avatar-rotate {
+  from { background-position: 0 0, 0deg; }
+  to { background-position: 0 0, 360deg; }
 }
 
 @keyframes avatar-pulse {
@@ -55,58 +91,92 @@
     box-shadow:
       0 0 20px var(--neon-pink),
       0 0 40px var(--neon-blue),
-      0 0 60px var(--neon-pink);
+      0 0 60px var(--neon-pink),
+      inset 0 0 30px rgba(0, 0, 0, 0.3);
     transform: scale(1);
   }
   100% {
     box-shadow:
       0 0 30px var(--neon-blue),
       0 0 60px var(--neon-pink),
-      0 0 90px var(--neon-blue);
+      0 0 90px var(--neon-blue),
+      inset 0 0 30px rgba(0, 0, 0, 0.2);
     transform: scale(1.05);
   }
+}
+
+@keyframes spin360-reverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
 }
 
 /* Special "certifications" badge strip */
 .cert-strip {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 10px;
   justify-content: center;
-  margin: 10px 0;
+  margin: 15px 0;
 }
 
 .cert-badge {
   font-family: var(--pixel-font);
   font-size: 8px;
-  padding: 6px 12px;
+  padding: 7px 14px;
   border: 2px solid;
   animation: badge-glow 1.5s ease-in-out infinite alternate;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.cert-badge:hover {
+  transform: translateY(-2px) scale(1.05);
 }
 
 .cert-badge.clay {
-  background: rgba(255, 102, 0, 0.2);
+  background: rgba(255, 102, 0, 0.15);
   border-color: #ff6600;
   color: #ff9944;
+  box-shadow: 0 0 10px rgba(255, 102, 0, 0.2);
+}
+
+.cert-badge.clay:hover {
+  box-shadow: 0 0 20px rgba(255, 102, 0, 0.4);
 }
 
 .cert-badge.lindy {
-  background: rgba(0, 255, 255, 0.2);
+  background: rgba(0, 255, 255, 0.15);
   border-color: #00ffff;
   color: #00ffff;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+.cert-badge.lindy:hover {
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
 }
 
 .cert-badge.bots {
-  background: rgba(255, 0, 255, 0.2);
+  background: rgba(255, 0, 255, 0.15);
   border-color: #ff00ff;
   color: #ff66ff;
+  box-shadow: 0 0 10px rgba(255, 0, 255, 0.2);
+}
+
+.cert-badge.bots:hover {
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.4);
 }
 
 .cert-badge.accenture {
-  background: rgba(160, 0, 255, 0.2);
+  background: rgba(160, 0, 255, 0.15);
   border-color: #a000ff;
   color: #cc66ff;
+  box-shadow: 0 0 10px rgba(160, 0, 255, 0.2);
+}
+
+.cert-badge.accenture:hover {
+  box-shadow: 0 0 20px rgba(160, 0, 255, 0.4);
 }
 
 @keyframes badge-glow {
@@ -114,12 +184,19 @@
   100% { filter: brightness(1.4); }
 }
 
-/* Bali-themed decorative elements */
+/* Decorative emoji strip */
 .bali-vibes {
   text-align: center;
-  font-size: 24px;
-  padding: 5px;
-  letter-spacing: 10px;
+  font-size: 28px;
+  padding: 8px;
+  letter-spacing: 14px;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 0, 0.3));
+  animation: vibes-float 3s ease-in-out infinite;
+}
+
+@keyframes vibes-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
 }
 
 /* Experience timeline - but make it chaotic */
@@ -144,15 +221,24 @@
     var(--neon-green) 20px,
     var(--neon-green) 30px
   );
+  box-shadow: 0 0 8px rgba(255, 0, 255, 0.3);
 }
 
 .timeline-item {
   margin-left: 40px;
-  padding: 10px;
-  margin-bottom: 10px;
+  padding: 12px;
+  margin-bottom: 12px;
   border: 1px dashed var(--neon-pink);
-  background: rgba(255, 0, 255, 0.05);
+  background: rgba(255, 0, 255, 0.04);
   position: relative;
+  transition: background 0.3s, border-color 0.3s, transform 0.2s;
+}
+
+.timeline-item:hover {
+  background: rgba(255, 0, 255, 0.08);
+  border-color: var(--neon-blue);
+  transform: translateX(4px);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
 }
 
 .timeline-item::before {
@@ -161,29 +247,38 @@
   left: -30px;
   top: 10px;
   font-size: 16px;
+  transition: transform 0.2s;
+  filter: drop-shadow(0 0 4px rgba(255, 247, 0, 0.5));
+}
+
+.timeline-item:hover::before {
+  transform: scale(1.3);
 }
 
 .timeline-item h4 {
   font-family: var(--silkscreen);
   font-size: 11px;
   color: var(--neon-yellow);
-  margin-bottom: 4px;
+  margin-bottom: 5px;
+  text-shadow: 0 0 8px rgba(255, 247, 0, 0.2);
 }
 
 .timeline-item .timeline-company {
   font-family: var(--comic-sans);
   color: var(--neon-blue);
   font-size: 13px;
+  text-shadow: 0 0 6px rgba(0, 240, 255, 0.2);
 }
 
 .timeline-item .timeline-desc {
   font-family: var(--comic-sans);
   color: #ccccff;
   font-size: 12px;
-  margin-top: 4px;
+  margin-top: 5px;
+  line-height: 1.6;
 }
 
-/* Cookie game special styling for Tanay */
+/* Cookie game special styling */
 .cookie-section {
   text-align: center;
 }
@@ -195,13 +290,21 @@
   transition: transform 0.1s;
   user-select: none;
   filter: drop-shadow(0 0 20px rgba(255, 165, 0, 0.5));
+  animation: cookie-idle 2s ease-in-out infinite;
+}
+
+@keyframes cookie-idle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-3deg); }
+  75% { transform: rotate(3deg); }
 }
 
 .cookie-btn:hover {
-  transform: scale(1.1);
-  filter: drop-shadow(0 0 30px rgba(255, 165, 0, 0.8));
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 35px rgba(255, 165, 0, 0.8));
+  animation: none;
 }
 
 .cookie-btn:active {
-  transform: scale(0.9);
+  transform: scale(0.85);
 }
